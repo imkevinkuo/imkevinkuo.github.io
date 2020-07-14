@@ -1,4 +1,4 @@
-html {
+ html {
 	font-size: 1em;
 	font-family: Raleway, Geneva, sans-serif
 }
@@ -77,6 +77,10 @@ a {
 
 #home {
 	flex-direction: row;
+}
+
+#home > * {
+	margin: 1rem;
 }
 
 .section {
