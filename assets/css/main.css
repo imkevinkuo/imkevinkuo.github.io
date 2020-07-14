@@ -75,10 +75,6 @@ a {
 	background-color: linen;
 }
 
-#home {
-	flex-direction: row;
-}
-
 #home > * {
 	margin: 1rem;
 }
@@ -86,7 +82,7 @@ a {
 .section {
 	padding: 2rem 0 0 0;
 	display: flex;
-	min-height: calc(100vh - 6rem);
+	min-height: calc(100vh - 12rem);
 	overflow: hidden;
 }
 
@@ -120,14 +116,11 @@ a > i:hover {
 }
 
 #profile {
+	float: right;
 	padding-left: 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-}
-
-#profile > * {
-	margin-bottom: 1rem;
 }
 
 #profile > img {
@@ -136,8 +129,16 @@ a > i:hover {
 }
 
 #info {
+	margin: 0.5rem 0;
 	display: flex;
 	justify-content: center;
+}
+
+#icon-desc {
+	margin: 0;
+	width: 100%;
+	height: 2rem;
+	text-align: center;
 }
 
 #project-menu {
@@ -255,7 +256,7 @@ img.h {
 	margin: 1rem 0;
 }
 
-@media screen and (max-width: 30cm) {	
+@media screen and (max-width: 32cm) {	
 	#navbar {
 		padding: 0 5%;
 		width: 90%;
@@ -266,13 +267,13 @@ img.h {
 	}
 }
 
-@media screen and (max-width: 20cm) {	
+@media screen and (max-width: 24cm) {	
 	body {
 		font-size: 1rem;
 	}
 	
-	#home {
-		flex-direction: column;
+	#profile {
+		float: none;
 	}
 	
 	.imgbox {
