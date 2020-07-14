@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<script type="text/javascript" src="assets/js/travian_snipe.js"></script>
+<link rel="stylesheet" href="assets/css/travian_snipe.css">
+<html>
+<body>
+
+<div id="wrapper">
+	<div id="inputarea">
+		<p>Paste a list of villages you want to snipe and <b>your desired landing times</b>.</p>
+		<p>Each line must be in the form: <b>x,y / hh:mm:ss</b></p>
+		<p>
+			<button onclick="calculateTimes()">Calculate</button>
+		</p>
+		<p>TS Level <input size="1" id="ts"></input></p>
+		<p>Troop speed: <input size="1" value="7" id="spd"></input></p>
+		<p>Starting coords: <input size="1" placeholder="x" id="x"></input><input size="1" placeholder="y" id="y"></input></p>
+		<p>
+			<textarea id="info" placeholder="x,y / hh:mm:ss
+x,y / hh:mm:ss
+..."></textarea>
+		</p>
+	</div>
+
+	<div id="outputarea">
+		<p>Times are sorted from earliest to latest send time.</p>
+		<div id="table-wrapper"></div>
+	</div>
+</div>
+
+<a href="other_travian.html">Other tools</a>
+
+</body>
+</html>

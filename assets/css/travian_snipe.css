@@ -1,0 +1,43 @@
+html {
+	font-size: 1em;
+}
+
+#wrapper {
+	display: flex;
+}
+
+#inputarea {
+	width: 36rem;
+	border-right: 1px black solid;
+	margin-right: 1rem;
+}
+
+#outputarea {
+	width: 36rem;
+}
+
+textarea {
+	width: 20rem;
+	min-height: 30rem;
+}
+
+#table-wrapper table {
+  border-collapse: collapse;
+}
+
+#table-wrapper td, #table-wrapper th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table-wrapper tr:nth-child(even){background-color: #f2f2f2;}
+
+#table-wrapper tr:hover {background-color: #ddd;}
+
+#table-wrapper th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
