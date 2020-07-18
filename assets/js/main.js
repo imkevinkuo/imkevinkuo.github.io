@@ -40,6 +40,56 @@ function getPostLoop(i) {
 	});
 }
 
+function convertRemToPixels(rem) {    
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+var mover = null;
+var first = null;
+var to_y = 0;
+var to_x = 0;
+var save_x = 0;
+var save_y = 0;
+var lastClicked = null;
+
+function updateMoverCoords() {
+	mover = $("#mover");
+	first = $("#project-icons");
+	to_y = first.offset().top;
+	to_x = first.offset().left;
+}
+
+function animateMover(clickedBox) {
+	updateMoverCoords();
+	lastClicked = clickedBox;
+	clickedBox.css('visibility', 'hidden');
+	save_y = lastClicked.offset().top - convertRemToPixels(1) + 2;
+	save_x = lastClicked.offset().left - convertRemToPixels(1) + 2;
+	mover.css("top", save_y);
+	mover.css("left", save_x);
+	mover.css("display", "flex");
+	mover.children().eq(1).css("transform", "translateY(80%)");
+	mover.children().eq(0).attr("src", lastClicked.children().eq(0).attr("src"));
+	mover.children().eq(0).attr("class", lastClicked.children().eq(0).attr("class"));
+	mover.animate({
+		top: to_y,
+		left: to_x
+	}, 400, "swing");
+}
+
+function animateMoverBack() {
+	$('#project-menu').removeClass('showdesc');
+	mover.animate({
+		top: save_y,
+		left: save_x
+	}, 600, "swing");
+	
+	mover.children().eq(1).css("transform", "translateY(175%)");
+	setTimeout(function() {
+		mover.css("display", "none");
+		lastClicked.css("visibility", "visible");
+	}, 600);
+}
 
 $( document ).ready(function() {
     // HTML Anchor Smooth Scroll
@@ -63,8 +113,14 @@ $( document ).ready(function() {
 	// Create blog posts
 	blog = document.getElementById('blog');
 	getPosts();
-	
+
 	// Project description
+	
+	updateMoverCoords();
+	window.addEventListener('resize', function() {
+		// get the placeholder
+	});
+	
 	$(".project-list > .imgbox").each(function(i) {
 		$(this).on("click", function(event) {
 			$("#project-menu").addClass('showdesc');
@@ -74,10 +130,9 @@ $( document ).ready(function() {
 					$(this).addClass("hidden");
 				}
 			});
+			animateMover($(this));
 		});
 	});
 	
-	$(".back").on("click", function(event) {
-		$('#project-menu').removeClass('showdesc');
-	})
+	mover.on("click", animateMoverBack);
 });
