@@ -1,4 +1,4 @@
- html {
+html {
 	font-size: 1em;
 	font-family: Raleway, Geneva, sans-serif
 }
@@ -44,10 +44,14 @@ a {
 	text-decoration: none;
 }
 
+#navbar > a {
+	height: 100%;
+}
+
 .navbutton {
 	color: white;
 	padding: 1rem 0.5rem;
-	height: 2rem;
+	height: calc(100% - 2rem);
 	cursor: pointer;
 	transition: transform 0.2s, border-bottom 0.2s;
 	border-bottom: beige 0px solid;
@@ -57,7 +61,7 @@ a {
 
 .navbutton:hover {
 	border-bottom: beige 6px solid;
-	transform: translateY(-3px);
+	transform: translateY(-5px);
 }
 
 .navbutton:active {
@@ -289,10 +293,6 @@ img.h {
 }
 
 @media screen and (max-width: 24cm) {	
-	body {
-		font-size: 1rem;
-	}
-	
 	#profile {
 		float: none;
 	}
