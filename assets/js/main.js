@@ -59,18 +59,18 @@ function updateMoverCoords() {
 	to_x = first.offset().left;
 }
 
-function animateMover(clickedBox) {
+function animateMover(clickedBox, clickedIndex) {
 	updateMoverCoords();
-	lastClicked = clickedBox;
+	lastClicked = clickedIndex;
 	clickedBox.css('visibility', 'hidden');
-	save_y = lastClicked.offset().top - convertRemToPixels(1) + 2;
-	save_x = lastClicked.offset().left - convertRemToPixels(1) + 2;
+	save_y = clickedBox.offset().top - convertRemToPixels(1);
+	save_x = clickedBox.offset().left - convertRemToPixels(1);
 	mover.css("top", save_y);
 	mover.css("left", save_x);
 	mover.css("display", "flex");
 	mover.children().eq(1).text(clickedBox.children().eq(1).text());
-	mover.children().eq(0).attr("src", lastClicked.children().eq(0).attr("src"));
-	mover.children().eq(0).attr("class", lastClicked.children().eq(0).attr("class"));
+	mover.children().eq(0).attr("src", clickedBox.children().eq(0).attr("src"));
+	mover.children().eq(0).attr("class", clickedBox.children().eq(0).attr("class"));
 	mover.animate({
 		top: to_y,
 		left: to_x
@@ -79,22 +79,30 @@ function animateMover(clickedBox) {
 		mover.children().eq(1).addClass("active");
 		mover.children().eq(1).text("Back to Projects");
 	}, 200)
+	
+	setTimeout(function() {
+		var lc = $(".project-desc > .imgbox.ph").eq(lastClicked);
+		mover.offset(lc.offset());
+	}, 600)
 }
 
 function animateMoverBack() {
-	$('#project-menu').removeClass('showdesc');
+	var clickedBox = $(".project-list > .imgbox").eq(lastClicked);
+	var from_y = clickedBox.offset().top - convertRemToPixels(1);
+	var from_x = clickedBox.offset().left - convertRemToPixels(1) + $('#project-menu').width();
 	mover.animate({
-		top: save_y,
-		left: save_x
+		top: from_y,
+		left: from_x
 	}, 600, "swing");
 	
+	$('#project-menu').removeClass('showdesc');
 	mover.children().eq(1).removeClass("active");
 	mover.children().eq(1).addClass("hiding");
 	
 	setTimeout(function() {
 		mover.children().eq(1).removeClass("hiding");
 		mover.css("display", "none");
-		lastClicked.css("visibility", "visible");
+		clickedBox.css("visibility", "visible");
 	}, 600);
 }
 
@@ -125,7 +133,8 @@ $( document ).ready(function() {
 	
 	updateMoverCoords();
 	window.addEventListener('resize', function() {
-		// get the placeholder
+		var lc = $(".project-desc > .imgbox.ph").eq(lastClicked);
+		mover.offset(lc.offset());
 	});
 	
 	$(".project-list > .imgbox").each(function(i) {
@@ -137,7 +146,8 @@ $( document ).ready(function() {
 					$(this).addClass("hidden");
 				}
 			});
-			animateMover($(this));
+			lastClicked = i;
+			animateMover($(this), i);
 		});
 	});
 	
