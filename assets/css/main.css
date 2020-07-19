@@ -188,16 +188,6 @@ a > i:hover {
 	flex-wrap: wrap;
 }
 
-#mover {
-	position: absolute;
-	z-index: 10;
-	display: none;
-}
-
-#mover > .boxdesc {
-	transform: translateY(80%);
-}
-
 .imgbox.ph {
 	background-color: transparent;
 	border: none;
@@ -273,6 +263,28 @@ img.h {
 	transform: translateY(80%);
 }
 
+#mover {
+	position: absolute;
+	z-index: 10;
+	display: none;
+}
+
+#mover > .boxdesc {
+	height: 40%;
+	transform: translateY(80%);
+	transition: height 0.3s, transform 0.3s;
+}
+
+#mover > .boxdesc.active {
+	height: 100%;
+	transform: translateY(0%);
+}
+
+#mover > .boxdesc.hiding {
+	height: 40%;
+	transform: translateY(175%);
+}
+
 .hidden {
 	display: none;
 }
@@ -281,7 +293,16 @@ img.h {
 	margin: 1rem 0;
 }
 
-@media screen and (max-width: 32cm) {	
+#profile > img {
+	height: auto;
+	width: 16rem;
+}
+
+@media screen and (max-width: 1200px) {
+	html {
+		font-size: 0.8em;
+	}
+	
 	#navbar {
 		padding: 0 5%;
 		width: 90%;
@@ -290,13 +311,19 @@ img.h {
 	#wrapper-inner {
 		margin: 4rem 0 0 0;
 	}
-}
-
-@media screen and (max-width: 24cm) {	
+	
 	#profile {
 		float: none;
+		padding: 0;
 	}
 	
+	#profile > img {
+		height: auto;
+		max-width: 100%;
+	}
+}
+
+@media screen and (max-width: 24cm) {
 	.imgbox {
 		width: 8rem;
 		height: 8rem;

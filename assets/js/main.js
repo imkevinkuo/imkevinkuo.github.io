@@ -68,13 +68,17 @@ function animateMover(clickedBox) {
 	mover.css("top", save_y);
 	mover.css("left", save_x);
 	mover.css("display", "flex");
-	mover.children().eq(1).css("transform", "translateY(80%)");
+	mover.children().eq(1).text(clickedBox.children().eq(1).text());
 	mover.children().eq(0).attr("src", lastClicked.children().eq(0).attr("src"));
 	mover.children().eq(0).attr("class", lastClicked.children().eq(0).attr("class"));
 	mover.animate({
 		top: to_y,
 		left: to_x
 	}, 400, "swing");
+	setTimeout(function() {
+		mover.children().eq(1).addClass("active");
+		mover.children().eq(1).text("Back to Projects");
+	}, 200)
 }
 
 function animateMoverBack() {
@@ -84,8 +88,11 @@ function animateMoverBack() {
 		left: save_x
 	}, 600, "swing");
 	
-	mover.children().eq(1).css("transform", "translateY(175%)");
+	mover.children().eq(1).removeClass("active");
+	mover.children().eq(1).addClass("hiding");
+	
 	setTimeout(function() {
+		mover.children().eq(1).removeClass("hiding");
 		mover.css("display", "none");
 		lastClicked.css("visibility", "visible");
 	}, 600);
