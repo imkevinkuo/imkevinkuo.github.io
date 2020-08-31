@@ -1,6 +1,6 @@
 function runCalendarScript() {
 	var lines = document.getElementById("info").value.split('\n');
-	var sections = {}
+	var sections = []
 	var lastSection = null;
 
 	for (var i = 0; i < lines.length; i++) {
@@ -11,10 +11,10 @@ function runCalendarScript() {
 		found = line.match(/^(.*) \((.*)\)$/);
 		if (found != null) {
 			lastSection = found[0];
-			sections[lastSection] = [];
 		}
 		else if (line.includes(" - ")) {
-			sections[lastSection].push(line);
+			// Class name, time string, location
+			sections.push([lastSection, line, lines[index+1]]);
 		}
 	})
 

@@ -3,15 +3,20 @@ html {
 }
 
 #inputarea {
-	width: 30rem;
+	width: 20rem;
 	margin-right: 2rem;
 }
 
 textarea {
-	width: 30rem;
-	min-height: 30rem;
+	width: 100%;
+	min-height: 25rem;
 }
 
 .row {
 	display: flex;
+	flex-wrap: wrap;
+}
+
+#helpimg {
+	width: 70rem;
 }
