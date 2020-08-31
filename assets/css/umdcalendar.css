@@ -1,0 +1,17 @@
+html {
+	font-size: 1em;
+}
+
+#inputarea {
+	width: 30rem;
+	margin-right: 2rem;
+}
+
+textarea {
+	width: 30rem;
+	min-height: 30rem;
+}
+
+.row {
+	display: flex;
+}
