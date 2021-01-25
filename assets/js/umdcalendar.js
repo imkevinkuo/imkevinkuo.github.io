@@ -20,7 +20,7 @@ function runCalendarScript() {
 
 
 	var xhr = new XMLHttpRequest();
-	var API = "https://script.google.com/macros/s/AKfycbxJk6UIXAoHcZx965hfcDH3160gjd9tFAtiVOIVpnQrWfYs9BIB/exec"
+	var API = "https://script.google.com/macros/s/AKfycbxYoMkxLW-VonDkfIbxaol9eJp0Y8JuZF4kx7uiENwbreOQwheh2l1OrA/exec"
 	var url = API + "?data=" + encodeURIComponent(JSON.stringify(sections));
 	window.location.href = url;
 }
