@@ -1,5 +1,5 @@
 const DOCUMENT_ID = "1Kl5jhBTPOrv1IatHd6tUVWRyO-PMSO_B8HVQeW_KdKY";
-const API_URL = `https://spreadsheets.google.com/feeds/list/${DOCUMENT_ID}/1/public/basic?alt=json`;
+const API_URL = `https://spreadsheets.google.com/feeds/list/${DOCUMENT_ID}/1/public/basic?alt=json-in-script&callback=onDataLoaded`;
 var converter = new showdown.Converter()
 var blog = null;
 
@@ -15,6 +15,7 @@ function httpGet(url, callback, aSync) {
 
 
 function parsePosts(content) {
+    content = content.substring(content.indexOf("{"), content.length - 2);
     var data = JSON.parse(content).feed.entry;
     var rows = [];
 	for (var i = 0; i < data.length; i++) {
