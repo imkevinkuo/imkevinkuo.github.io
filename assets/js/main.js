@@ -1,44 +1,32 @@
-var BLOG_REPO = "https://raw.githubusercontent.com/imkevinkuo/blog/master/";
+const DOCUMENT_ID = "1Kl5jhBTPOrv1IatHd6tUVWRyO-PMSO_B8HVQeW_KdKY";
+const API_URL = `https://spreadsheets.google.com/feeds/list/${DOCUMENT_ID}/1/public/basic?alt=json`;
 var converter = new showdown.Converter()
-
-var LATEST_POST = 0;
 var blog = null;
 
-function getPosts() {
-	// Get number of posts
-	$.ajax({
-		type: "GET",
-		url: BLOG_REPO + "latest_post.txt",
-		async: false,
-		dataType: "text",
-		success: function(data) {
-			LATEST_POST = parseInt(data);
-		}
-	});
-	
-	getPostLoop(LATEST_POST);
+function httpGet(url, callback, aSync) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", url, aSync); // true for asynchronous 
+    xmlHttp.send(null);
 }
 
-function getPostLoop(i) {
-	if (i < 0) {
-		return;
+
+function parsePosts(content) {
+    var data = JSON.parse(content).feed.entry;
+    var rows = [];
+	for (var i = 0; i < data.length; i++) {
+		post = data[i].title.$t;
+        html = converter.makeHtml(post);
+        var blogpost = document.createElement('div');
+        blogpost.classList.add("blogpost");
+        blogpost.innerHTML = html;
+        blog.appendChild(blogpost, blog.firstChild);
 	}
-	
-	$.ajax({
-		type: "GET",
-		url: BLOG_REPO + i + ".md",
-		dataType: "text",
-		success: function(data) {
-			html = converter.makeHtml(data);
-			var blogpost = document.createElement('div');
-			blogpost.classList.add("blogpost");
-			blogpost.innerHTML = html;
-			blog.appendChild(blogpost, blog.firstChild);
-			
-			getPostLoop(i-1);
-		}
-	});
 }
+
 
 function convertRemToPixels(rem) {    
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -115,7 +103,8 @@ $( document ).ready(function() {
 			scrollTop: $($.attr(this, 'href')).offset().top - 64
 		}, 500, "swing");
 	});
-	
+    
+    
 	// Icons below profile pic
 	$("a > i").on("mouseenter", function(event) {
 		$("#icon-desc").text($(event.target).attr("hovertext"));
@@ -124,13 +113,14 @@ $( document ).ready(function() {
 	$("a > i").on("mouseout", function(event) {
 		$("#icon-desc").text("");
 	});
-	
+    
+    
 	// Create blog posts
 	blog = document.getElementById('blog');
-	getPosts();
-
+    httpGet(API_URL, parsePosts, true);
+    
+    
 	// Project description
-	
 	updateMoverCoords();
 	window.addEventListener('resize', function() {
 		var lc = $(".project-desc > .imgbox.ph").eq(lastClicked);
