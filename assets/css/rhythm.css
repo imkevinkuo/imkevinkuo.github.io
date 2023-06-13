@@ -1,0 +1,155 @@
+html {
+	font-size: 1em;
+}
+p, h1, .box, .note, #help, th {
+	font-family: 'Slabo 27px', serif;
+	font-size: 2rem;
+	text-align: center;
+}
+.note {
+	font-size: 1rem;
+}
+tr:nth-child(1) {
+	background-color: #f2f2f2;
+}
+tr:nth-child(2) {
+	background-color: lightgrey;
+}
+th {
+	font-size: 1.2rem;
+}
+table {
+	margin: 0 auto;
+}
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: visible;
+}
+#staff {
+	flex-wrap: wrap;
+	width: 40rem;
+	margin: 0 auto;
+}
+.box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1rem;
+	width: 24rem;
+	height: 8rem;
+	background-color: salmon;
+	margin: 1rem;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+.box:hover {
+	background-color: indianred;
+}
+#help {
+	position: fixed;
+	width: 8rem;
+	height: 4rem;
+	top: 0;
+	left: 0;
+}
+#beat {
+	width: 4rem;
+	height: 8rem;
+}
+.ripple {
+  width: 0.1em;
+  height: 0.1em;
+  border-radius: 12rem;
+  border-radius: 50%;
+  animation: ripple 2s ease-out;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  z-index: -1;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(150, 202, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 50em rgba(150, 202, 255, 0);
+  }
+}
+
+.note {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2rem;
+	width: 4rem;
+	margin: 0.2rem;
+	background-color: deepskyblue;
+	border-radius: 0.5rem;
+	transition: opacity 0.2s;
+}
+.note:hover {
+	opacity: 0.8;
+}
+.modal:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden;
+	text-align: center;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	animation: fadeOut 0.4s;
+	animation-fill-mode: forwards;
+}
+.modal.active {
+	/*Animation */
+	animation: fadeIn 0.4s;
+	display: block;
+}
+/* Modal Content/Box */
+.modalContent {
+	/* Appearance */
+	display: inline-block;
+	vertical-align: middle;
+    background-color: white;
+	width: 80%;
+	height: auto;
+	margin: 0 auto; /* 15% from the top and centered */
+    padding: 1rem; /* Slightly less on top for the X */
+    border: 1px solid #888;
+	border-radius: 0.5rem;
+	overflow: visible;
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+.hidden {
+	display: none;
+}

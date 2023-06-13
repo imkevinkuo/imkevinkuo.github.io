@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<script src="assets/js/jquery-3.3.1.js"></script>	
+	<script src="assets/js/rhythm.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/rhythm.css">
+	<link rel="icon" type="image/png" href="images/rhythm/icon.png">
+	<title>Cadence</title>
+</head>
+    <body>
+		<div class="box" id="help">Help</div>
+		
+		<div id="myModal" class="modal hidden">
+		<div class="modalContent">
+			<p>Trying to transcribe music but can't figure out a rhythm? <br>Cadence helps you figure out rhythms based on the time between your spacebar taps.</p>
+			<p>All you need to do is tap evenly spaced beats until the BPM value stabilizes.<br>Then, tap out the rhythm you want to transcribe.<br>Middle button will mute/unmute the metronome.</p>
+			<p>Cadence supports the following note lengths:</p>
+			<table>
+			<tr>
+			<th>0.25</th>
+			<th>0.50</th>
+			<th>0.75</th>
+			<th>1.00</th>
+			<th>1.50</th>
+			<th>2.00</th>
+			<th>2.50</th>
+			<th>3.00</th>
+			<th>4.00</th>
+			<th>0.33</th>
+			<th>0.66</th>
+			</tr>
+			
+			<tr>
+			<th>Sixteenth</th>
+			<th>Eighth</th>
+			<th>Dotted Eighth</th>
+			<th>Quarter</th>
+			<th>Dotted Quarter</th>
+			<th>Half</th>
+			<th>Half + Eighth</th>
+			<th>Dotted Half</th>
+			<th>Whole</th>
+			<th>2-Eighth Triplet</th>
+			<th>2-Quarter Triplet</th>
+			</tr>
+			</table>
+		</div>
+		</div>
+		
+		<div class="row"><h1>Ca&#x1d160;ence - automated music notation</h1></div>
+		<div class="row" style="margin-bottom: 5rem;">
+			<div class="box" id="bpm">1. Record BPM</div>
+			<div class="box" id="beat"></div>
+			<div class="box" id="notate">2. Tap rhythm</div>
+		</div>
+		<div class="row" id="staff"></div>
+	</body>
+</html>
